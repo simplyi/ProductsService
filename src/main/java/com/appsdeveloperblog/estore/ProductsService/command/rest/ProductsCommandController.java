@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.ProductsService.rest;
+package com.appsdeveloperblog.estore.ProductsService.command.rest;
 
 import java.util.UUID;
 
@@ -17,13 +17,13 @@ import com.appsdeveloperblog.estore.ProductsService.command.CreateProductCommand
 
 @RestController
 @RequestMapping("/products") // http://localhost:8080/products
-public class ProductsController {
+public class ProductsCommandController {
 	
 	private final Environment env;
 	private final CommandGateway commandGateway;
 	
 	@Autowired
-	public ProductsController(Environment env, CommandGateway commandGateway) {
+	public ProductsCommandController(Environment env, CommandGateway commandGateway) {
 		this.env = env;
 		this.commandGateway = commandGateway;
 	}

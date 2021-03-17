@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.ProductsService.rest;
+package com.appsdeveloperblog.estore.ProductsService.command.rest;
 
 import java.math.BigDecimal;
 
