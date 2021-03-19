@@ -48,19 +48,19 @@ public class ProductsCommandController {
 		return returnValue;
 	}
 	
-	@GetMapping
-	public String getProduct() {
-		return "HTTP GET Handled " + env.getProperty("local.server.port");
-	}
-	
-	@PutMapping
-	public String updateProduct() {
-		return "HTTP PUT Handled";
-	}
-	
-	@DeleteMapping
-	public String deleteProduct() {
-		return "HTTP DELETE handled";
-	}
+//	@GetMapping
+//	public String getProduct() {
+//		return "HTTP GET Handled " + env.getProperty("local.server.port");
+//	}
+//	
+//	@PutMapping
+//	public String updateProduct() {
+//		return "HTTP PUT Handled";
+//	}
+//	
+//	@DeleteMapping
+//	public String deleteProduct() {
+//		return "HTTP DELETE handled";
+//	}
 
 }
