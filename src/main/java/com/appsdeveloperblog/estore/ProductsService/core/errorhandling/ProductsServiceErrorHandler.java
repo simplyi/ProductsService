@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.estore.ProductsService.core.errorhandling;
 
+import java.util.Date;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,13 +15,16 @@ public class ProductsServiceErrorHandler {
 	@ExceptionHandler(value= {IllegalStateException.class})
 	public ResponseEntity<Object> handleIllegalStateException(IllegalStateException ex, WebRequest request) {
 		
-		return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
+		
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@ExceptionHandler(value= {Exception.class})
 	public ResponseEntity<Object> handleOtherExceptions(Exception ex, WebRequest request) {
+		ErrorMessage errorMessage = new ErrorMessage(new Date(), ex.getMessage());
 		
-		return new ResponseEntity<>(ex.getMessage(), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 
