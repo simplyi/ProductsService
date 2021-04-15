@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.appsdeveloperblog.estore.ProductsService.core.data.ProductEntity;
 import com.appsdeveloperblog.estore.ProductsService.core.data.ProductsRepository;
 import com.appsdeveloperblog.estore.ProductsService.core.events.ProductCreatedEvent;
+import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
 
 @Component
 @ProcessingGroup("product-group")
@@ -44,5 +45,15 @@ public class ProductEventsHandler {
 		}
 
 	}
+	
+	@EventHandler
+	public void on(ProductReservedEvent productReservedEvent) {
+		ProductEntity productEntity = productsRepository.findByProductId(productReservedEvent.getProductId());
+		productEntity.setQuantity(productEntity.getQuantity() - productReservedEvent.getQuantity());
+		productsRepository.save(productEntity);
+		
+	}
+	
+	
 
 }
