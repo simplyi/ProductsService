@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.appsdeveloperblog.estore.ProductsService.core.data.ProductEntity;
 import com.appsdeveloperblog.estore.ProductsService.core.data.ProductsRepository;
 import com.appsdeveloperblog.estore.ProductsService.core.events.ProductCreatedEvent;
+import com.appsdeveloperblog.estore.core.events.ProductReservationCancelledEvent;
 import com.appsdeveloperblog.estore.core.events.ProductReservedEvent;
 
 @Component
@@ -56,6 +57,17 @@ public class ProductEventsHandler {
 		
 		LOGGER.info("ProductReservedEvent is called for productId:" + productReservedEvent.getProductId() +
 				" and orderId: " + productReservedEvent.getOrderId());
+	}
+	
+	@EventHandler
+	public void on(ProductReservationCancelledEvent productReservationCancelledEvent) {
+		ProductEntity currentlyStoredProduct =  productsRepository.findByProductId(productReservationCancelledEvent.getProductId());
+	
+		int newQuantity = currentlyStoredProduct.getQuantity() + productReservationCancelledEvent.getQuantity();
+		currentlyStoredProduct.setQuantity(newQuantity);
+		
+		productsRepository.save(currentlyStoredProduct);
+	
 	}
 	
 	
