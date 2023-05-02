@@ -2,8 +2,6 @@ package com.appsdeveloperblog.estore.ProductsService.command.rest;
 
 import java.util.UUID;
 
-import javax.validation.Valid;
-
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -16,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.appsdeveloperblog.estore.ProductsService.command.CreateProductCommand;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/products") // http://localhost:8080/products
