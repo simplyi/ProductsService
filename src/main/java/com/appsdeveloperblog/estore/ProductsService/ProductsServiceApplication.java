@@ -12,12 +12,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 import com.appsdeveloperblog.estore.ProductsService.command.interceptors.CreateProductCommandInterceptor;
 import com.appsdeveloperblog.estore.ProductsService.core.errorhandling.ProductsServiceEventsErrorHandler;
+import com.appsdeveloperblog.estore.core.config.XStreamConfig;
 
 @EnableDiscoveryClient
 @SpringBootApplication
+@Import({ XStreamConfig.class })
 public class ProductsServiceApplication {
 
 	public static void main(String[] args) {
